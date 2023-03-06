@@ -443,3 +443,5 @@ rs_task = PythonOperator(task_id="rs", python_callable=compute_rs, dag=indicator
 
  # SECTION
 obv_task >> rs_task
+
+sonmt_task
