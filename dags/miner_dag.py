@@ -406,6 +406,16 @@ class RSMiner(Miner):
         output_list.append(rs)
         return output_list, rs
 
+
+class SONMT0703Miner(Miner):
+    def __init__(self, input_tables, indicator_name, recursive_range):
+        super().__init__(input_tables, indicator_name, recursive_range)
+
+    def get_inputs(self, current_date: str, dict_input_dfs: Dict[str, pd.DataFrame], output_list: list):
+        pass
+
+    def formula(self, current_date: str, dict_input_dfs: Dict[str, pd.DataFrame], output_list: list):
+        pass
 # SECTION
 indicator_dag = DAG(
     dag_id='indicator_dag',
@@ -437,5 +447,16 @@ def compute_rs():
 
 rs_task = PythonOperator(task_id="rs", python_callable=compute_rs, dag=indicator_dag)
 
+
+def compute_sonmt_0703():
+    sonmt_0703_miner = SONMT0703Miner(input_tables={"ticker_data": 5}, indicator_name="sonmt_0703",
+                                       recursive_range=0)
+    sonmt_0703_miner.execute()
+    print("SONMT0703 Miner executing...")
+    return "SONMT0703_MINER"
+
+
+sonmt_0703_task = PythonOperator(task_id="sonmt_0703", python_callable=compute_sonmt_0703, dag=indicator_dag)
 # SECTION
 obv_task >> rs_task
+sonmt_0703_task
