@@ -1,0 +1,4 @@
+druid_broker: "druid-broker.ns-druid.svc.cluster.local:8082"
+druid_coordinator: "druid-coordinator.ns-druid.svc.cluster.local:8081"
+druid_url: "druid/v2"
+kafka_bootstrap_servers: "kafka.ns-kafka.svc.cluster.local:9092"

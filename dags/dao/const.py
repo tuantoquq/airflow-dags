@@ -1,0 +1,1 @@
+DRUID_DATASOURCES_LIST_ENDPOINT = "/druid/coordinator/v1/datasources"
